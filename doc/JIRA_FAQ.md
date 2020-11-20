@@ -1,7 +1,10 @@
 # JIRA FAQ
 
-### 明明按照文档中说的配置了agent，并且成功激活了confluence，但JIRA激活时提示生成的密钥无效
-这种情况往往是 `JAVA_OPTS` 设置的问题，如果是按照下边方式设置的 `JAVA_OPTS` ，会出现激活失败
-   * 你可以把：`export JAVA_OPTS="-javaagent:/path/to/atlassian-agent.jar ${JAVA_OPTS}"` 这样的命令放到 `.bashrc` 或 `.bash_profile` 这样的文件内。
+### Mingming configured the agent according to the document, and successfully activated the confluence, but when JIRA was activated, it prompted that the generated key was invalid.
+This situation is often caused by the `JAVA_OPTS` setting. `JAVA_OPTS`, there will be activation failure
+   * You can put: `export JAVA_OPTS="-javaagent:/path/to/atlassian-agent.jar ${JAVA_OPTS}"` into `.bashrc` or `. bash_profile` such a file.
 
-原因即是 JIRA 并没有使用全局设置的这个变量，主要还是依赖的其自身目录中 `安装目录下/bin/setenv.sh` 中的配置，所以编辑这个文件，加上 `JAVA_OPTS="-javaagent:/atlassian-agent存放目录/atlassian-agent.jar $JAVA_OPTS"` 在 `JAVA_OPTS` 处，再重新尝试激活即可
+The reason is that JIRA does not use this variable set globally, and it mainly relies on the configuration in the `/bin/setenv.sh` under the installation directory in its own directory, so edit this file and add `JAVA_OPTS="-javaagent: /atlassian-agent storage directory/atlassian-agent.jar $JAVA_OPTS"` at `JAVA_OPTS`, then try to activate again
+
+
+
